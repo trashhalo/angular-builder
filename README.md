@@ -10,7 +10,7 @@ Small builder that encourages you to build services that are inherently testable
       }
       function myPublicMethod(){
         // this does stuff too
-        myPrivateMethod(“foo”);
+        myPrivateMethod('foo');
       }
       return {
         myPublicMethod: myPublicMethod
