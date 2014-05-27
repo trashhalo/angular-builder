@@ -57,7 +57,8 @@
     };
 
     ServiceBuilder.prototype.cons = function(fn) {
-      return this.service.constructors.push(fn);
+      this.service.constructors.push(fn);
+      return this;
     };
 
     ServiceBuilder.prototype.$private = {};

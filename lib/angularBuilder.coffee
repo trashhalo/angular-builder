@@ -39,6 +39,7 @@ class ServiceBuilder
 		this
 	cons: (fn)->
 		this.service.constructors.push(fn)
+		this
 
 	@::$private = {}
 	
