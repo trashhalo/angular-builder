@@ -48,7 +48,7 @@ angular.$build.service(function(service){
 ### Advantages
 1. Declarative syntax explicitly states what each piece of information is for. `service.name('myCoolService');`
 2. No more managing $inject blocks. You have access to every injected item off of this. `this.$q`
-3. All private methods are exposed on a $private object so you have the capability to sub or override their behavior in a test case. `service.$private.myPrivateMethod`
+3. All private methods are exposed on a $private object so you have the capability to stub or override their behavior in a test case. `service.$private.myPrivateMethod`
 4. All methods private or public are accessible via this. `this.myPrivateMethod('foo');` Making it so you cannot accidently reference the raw method bypassing a spy. 
 
 ### How this came about
