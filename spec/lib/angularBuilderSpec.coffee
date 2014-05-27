@@ -66,6 +66,28 @@ describe "builder", ->
 		it "adds injects", ->
 			subject.inject "fooService"
 			expect(subject.service.injects).toEqual ["fooService"]
+		
+		it "adds constructors", ->
+			fn = ->
+			subject.cons fn
+			expect(subject.service.constructors).toEqual [fn]
+		
+		describe "fireConstructor", ->
+			con = null
+			service = null
+			thisWrapper = null
+			
+			beforeEach ->
+				con = jasmine.createSpy('constructor')
+				service = {}
+				thisWrapper = {}
+				subject.$private.fireConstructor service, con, thisWrapper
+			
+			it "calls constructor", ->
+				expect(con).toHaveBeenCalled()
+			
+			it "passes the service to the constructor", ->
+				expect(con).toHaveBeenCalledWith(service)
 
 		describe "addInject", ->
 			thisWrapper = null

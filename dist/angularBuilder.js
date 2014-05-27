@@ -12,7 +12,8 @@
         dependsOn: [],
         injects: [],
         defines: [],
-        exposes: []
+        exposes: [],
+        constructors: []
       };
     }
 
@@ -55,6 +56,10 @@
       return this;
     };
 
+    ServiceBuilder.prototype.cons = function(fn) {
+      return this.service.constructors.push(fn);
+    };
+
     ServiceBuilder.prototype.$private = {};
 
     ServiceBuilder.prototype.$private.angular = angular;
@@ -83,6 +88,21 @@
       for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
         inject = _ref[index];
         _results.push(this.addInject(inject, values[index], result, thisWrapper));
+      }
+      return _results;
+    };
+
+    ServiceBuilder.prototype.$private.fireConstructor = function(service, constructor, thisWrapper) {
+      return constructor.apply(thisWrapper, [service]);
+    };
+
+    ServiceBuilder.prototype.$private.fireConstructors = function(service, thisWrapper) {
+      var con, _i, _len, _ref, _results;
+      _ref = service.constructors;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        con = _ref[_i];
+        _results.push(this.fireConstructor(service, con, thisWrapper));
       }
       return _results;
     };
@@ -153,6 +173,7 @@
           };
           thisWrapper = {};
           _this.$private.addInjects(_this.service, arguments, result, thisWrapper);
+          _this.$private.fireConstructors(_this.service, thisWrapper);
           _this.$private.addDefines(_this.service, result, thisWrapper);
           _this.$private.addExposes(_this.service, result, thisWrapper);
           return result;

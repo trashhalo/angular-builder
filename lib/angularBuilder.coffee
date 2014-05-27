@@ -8,7 +8,8 @@ class ServiceBuilder
 			dependsOn: [],
 			injects: [],
 			defines: [],
-			exposes: []
+			exposes: [],
+			constructors: []
 		}
 	name: (name)->
 		this.service.name = name
@@ -36,6 +37,8 @@ class ServiceBuilder
 			val: val
 		}
 		this
+	cons: (fn)->
+		this.service.constructors.push(fn)
 
 	@::$private = {}
 	
@@ -56,6 +59,13 @@ class ServiceBuilder
 		for inject, index in service.injects
 			@.addInject inject, values[index], result, thisWrapper
 	
+	@::$private.fireConstructor = (service, constructor, thisWrapper) ->
+		constructor.apply(thisWrapper, [service])
+	
+	@::$private.fireConstructors = (service, thisWrapper) ->
+		for con in service.constructors
+			@.fireConstructor(service, con, thisWrapper)
+
 	@::$private.addDefine = (defineKey, defineValue, result, thisWrapper) ->
 		if typeof defineValue == 'function'
 			result.$private[defineKey] = @.bind defineValue, thisWrapper
@@ -96,6 +106,7 @@ class ServiceBuilder
 			}
 			thisWrapper = {}
 			@.$private.addInjects this.service, arguments, result, thisWrapper
+			@.$private.fireConstructors this.service, thisWrapper
 			@.$private.addDefines this.service, result, thisWrapper
 			@.$private.addExposes this.service, result, thisWrapper
 			result
