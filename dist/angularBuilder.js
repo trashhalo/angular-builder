@@ -66,9 +66,12 @@
     ServiceBuilder.prototype.$private.angular = angular;
 
     ServiceBuilder.prototype.$private.bind = function(fn, thisWrapper) {
-      return function() {
+      var bound;
+      bound = function() {
         return fn.apply(thisWrapper, arguments);
       };
+      bound.prototype = fn.prototype;
+      return bound;
     };
 
     ServiceBuilder.prototype.$private.addInject = function(injectKey, injectVal, result, thisWrapper) {

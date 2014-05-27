@@ -46,7 +46,9 @@ class ServiceBuilder
 	@::$private.angular = angular
 
 	@::$private.bind = (fn, thisWrapper) ->
-		() -> fn.apply(thisWrapper, arguments)
+		bound = () -> fn.apply(thisWrapper, arguments)
+		bound:: = fn::
+		bound
 
 	@::$private.addInject = (injectKey, injectVal, result, thisWrapper) ->
 		result.$injects[injectKey] = injectVal
