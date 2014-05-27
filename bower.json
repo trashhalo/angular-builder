@@ -1,0 +1,18 @@
+{
+  "name": "angular-builder",
+  "version": "0.1.0",
+  "moduleType": [
+    "globals"
+  ],
+  "main": "dist/angularBuilder.min.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

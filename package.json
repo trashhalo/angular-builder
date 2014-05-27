@@ -1,0 +1,12 @@
+{
+  "name": "angular-builder",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jasmine-bundle": "^0.2.0"
+  }
+}
