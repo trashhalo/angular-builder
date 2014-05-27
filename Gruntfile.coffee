@@ -32,7 +32,7 @@ module.exports = (grunt) ->
         ext: '.js'
     copy:
       main:
-        src: 'lib/angularBuilder.js'
+        src: 'js/angularBuilder.js'
         dest: 'dist/angularBuilder.js'
     uglify:
       dist:
