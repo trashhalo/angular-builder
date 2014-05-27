@@ -63,7 +63,7 @@ class ServiceBuilder
 		constructor.apply(thisWrapper, [service])
 	
 	@::$private.fireConstructors = (service, thisWrapper) ->
-		for con in service.constructors
+		for con in service.service.constructors
 			@.fireConstructor(service, con, thisWrapper)
 
 	@::$private.addDefine = (defineKey, defineValue, result, thisWrapper) ->
@@ -106,7 +106,7 @@ class ServiceBuilder
 			}
 			thisWrapper = {}
 			@.$private.addInjects this.service, arguments, result, thisWrapper
-			@.$private.fireConstructors this.service, thisWrapper
+			@.$private.fireConstructors @, thisWrapper
 			@.$private.addDefines this.service, result, thisWrapper
 			@.$private.addExposes this.service, result, thisWrapper
 			result

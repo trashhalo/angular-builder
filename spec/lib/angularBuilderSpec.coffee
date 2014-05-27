@@ -74,20 +74,18 @@ describe "builder", ->
 		
 		describe "fireConstructor", ->
 			con = null
-			service = null
 			thisWrapper = null
-			
+
 			beforeEach ->
 				con = jasmine.createSpy('constructor')
-				service = {}
 				thisWrapper = {}
-				subject.$private.fireConstructor service, con, thisWrapper
+				subject.$private.fireConstructor subject, con, thisWrapper
 			
 			it "calls constructor", ->
 				expect(con).toHaveBeenCalled()
 			
-			it "passes the service to the constructor", ->
-				expect(con).toHaveBeenCalledWith(service)
+			it "passes the serviceBuilder to the constructor", ->
+				expect(con).toHaveBeenCalledWith(subject)
 
 		describe "addInject", ->
 			thisWrapper = null

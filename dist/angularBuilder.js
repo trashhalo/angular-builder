@@ -98,7 +98,7 @@
 
     ServiceBuilder.prototype.$private.fireConstructors = function(service, thisWrapper) {
       var con, _i, _len, _ref, _results;
-      _ref = service.constructors;
+      _ref = service.service.constructors;
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         con = _ref[_i];
@@ -173,7 +173,7 @@
           };
           thisWrapper = {};
           _this.$private.addInjects(_this.service, arguments, result, thisWrapper);
-          _this.$private.fireConstructors(_this.service, thisWrapper);
+          _this.$private.fireConstructors(_this, thisWrapper);
           _this.$private.addDefines(_this.service, result, thisWrapper);
           _this.$private.addExposes(_this.service, result, thisWrapper);
           return result;
