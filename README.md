@@ -52,4 +52,7 @@ angular.$build.service(function(service){
 4. All methods private or public are accessible via this. `this.myPrivateMethod('foo');` Making it so you cannot accidently reference the raw method bypassing a spy. 
 
 ### How this came about
-I have been doing focused angular and ruby work for over a year and have begun to be realize that my rspec tests were much more complete compared to my jasmine tests. I started to think about how I could restructure my services to support better testing. This tiny library is the codification of these ideas. 
+I have been doing focused angular and ruby work for over a year and have begun to be realize that my rspec tests were much more complete compared to my jasmine tests. I started to think about how I could restructure my services to support better testing. This tiny library is weekend warrior effort the codification of these ideas. 
+
+### Playground
+[Fiddle creating two services and linking them together](http://jsfiddle.net/5ZXNv/3/)
