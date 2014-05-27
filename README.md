@@ -32,14 +32,10 @@ angular.$build.service(function(service){
   service
     .name('myCoolService')
     .module('me.myCoolService')
-    .dependsOn('ng')
-    .dependsOn('other.userService')
-    .dependsOn('other.productService')
-    .dependsOn('other.timeService')
-    .inject('userService')
-    .inject('productService')
-    .inject('timeService')
-    .inject('$q')
+    .dependsOn('ng').inject('$q')
+    .dependsOn('other.userService').inject('userService')
+    .dependsOn('other.productService').inject('productService')
+    .dependsOn('other.timeService').inject('timeService')
     .define('myPrivateMethod', function(arg){
       // this does stuff
     })
