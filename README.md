@@ -29,27 +29,24 @@ Small builder that encourages you to build services that are inherently testable
 ##### Same service with Angular Builder
 ```javascript
 angular.$build.service(function(service){
-  service.name('myCoolService');
-  service.module('me.myCoolService');
-  
-  service.dependsOn('ng');
-  service.dependsOn('other.userService');
-  service.dependsOn('other.productService');
-  service.dependsOn('other.timeService');
-  
-  service.inject('userService');
-  service.inject('productService');
-  service.inject('timeService');
-  service.inject('$q');
-  
-  service.define('myPrivateMethod', function(arg){
-    // this does stuff
-  });
-  
-  service.expose('myPublicMethod', function(){
-    // this does stuff
-    this.myPrivateMethod('foo');
-  });
+  service
+    .name('myCoolService')
+    .module('me.myCoolService')
+    .dependsOn('ng')
+    .dependsOn('other.userService')
+    .dependsOn('other.productService')
+    .dependsOn('other.timeService')
+    .inject('userService')
+    .inject('productService')
+    .inject('timeService')
+    .inject('$q')
+    .define('myPrivateMethod', function(arg){
+      // this does stuff
+    })
+    .expose('myPublicMethod', function(){
+      // this does stuff
+      this.myPrivateMethod('foo')
+    });
 });
 ```
 ##### Advantages
