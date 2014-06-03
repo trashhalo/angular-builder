@@ -4,7 +4,7 @@
   "moduleType": [
     "globals"
   ],
-  "main": "dist/angularBuilder.min.js",
+  "main": "dist/angularBuilder.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
